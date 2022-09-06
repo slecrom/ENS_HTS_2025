@@ -503,7 +503,7 @@ Look at the [tutorial on how to connect to IFB-core Rstudio server](../IFBrstudi
 2. Save the working notebook in your personal environment
 
 - In "*File > Open File...*" enter the path `/shared/projects/form_2022_23/data/rnaseq/DEseq2.Rmd` to open the notebook containing all the code needed for the practical
-- Save it into your personal folder on your IFB account using "*File > Save As*" with the following path `/shared/ifbstor1/home/your_login`
+- Save it into your personal folder on your IFB account using "*File > Save As*" with the following path `/shared/ifbstor1/home/your_login` 
    
 &nbsp;
 3. Follow the instruction of the notebook to conduct the analysis. You can also visualize the final [report version](DEseq2_report.html).
