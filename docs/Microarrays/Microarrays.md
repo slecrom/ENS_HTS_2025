@@ -13,7 +13,7 @@ Look at the [tutorial on how to connect to IFB-core Rstudio server](../IFBrstudi
 1. In "*File > Open File...*" enter the path `/shared/projects/form_2022_23/data/microarrays/Microarrays.Rmd` to open the notebook containing all the code needed for the practical.
 
 &nbsp;
-2. Save it into your personal folder on your IFB account using "*File > Save As*" 
+2. Save it into your personal folder on your IFB account using "*File > Save As*" with the following path `/shared/ifbstor1/home/your_login`
 
 ***
  
