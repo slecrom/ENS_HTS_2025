@@ -1,6 +1,6 @@
 # Introduction
 
-This GitHub directory is used for the course "Functional genomic data analysis: transcriptomics 2022"
+This GitHub directory is used for the course "Functional genomic data analysis: transcriptomics 2023"
 
 ***
 
@@ -15,7 +15,6 @@ During this course, you will work remotely on the [IFB-core Cluster](https://www
 
 You can read the following tutorials in order to access IFB-core Cluster ressources.
 
-- [How to connect to the IFB server](IFBserver.md)
-- [How to connect to the IFB Rstudio](IFBrstudio.md)
+- [How to work with the IFB cluster](IFBjupyterhub.md)
 - [Useful commands to work on the IFB-core Cluster](IFBcommands.md)
 

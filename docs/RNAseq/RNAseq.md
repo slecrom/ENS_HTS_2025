@@ -19,19 +19,19 @@
 	
 	* To conduct an analysis of RNA-seq raw fastq files. You will first perform **quality control** of the sequencer file outputs before proceding to the **mapping** of the reads onto the reference genome.
 		
-	* To perform statistical analysis of the gene expression matrices in order to identify differentialy expressed genes between two conditions.
+	* To perform statistical analysis of the gene expression matrix in order to identify differentialy expressed genes between two conditions.
 
 ### Dataset
 
-Data used in these practical were collected from the following publication: Guida, A., Lindstädt, C., Maguire, S. L., Ding, C., Higgins, D. G., Corton, N. J., Berriman, M., et al. (2011). Using RNA-seq to determine the transcriptional landscape and the hypoxic response of the pathogenic yeast *Candida parapsilosis*. [Guida *et al*. BMC Genomics 2011](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-12-628)
+Data used in this practical were collected from the following publication: Guida, A., Lindstädt, C., Maguire, S. L., Ding, C., Higgins, D. G., Corton, N. J., Berriman, M., et al. (2011). Using RNA-seq to determine the transcriptional landscape and the hypoxic response of the pathogenic yeast *Candida parapsilosis*. [Guida *et al*. BMC Genomics 2011](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-12-628)
 
-The raw sequencing files located into the projet data folder of the IFB-core Cluster : `/shared/projects/form_2022_23/` where retrieved from the [EBI European Electronic Archive](https://www.ebi.ac.uk/ena/browser/home) using the study accession number [PRJNA154483](https://www.ebi.ac.uk/ena/browser/view/PRJNA154483).
+The raw sequencing files located into the projet data folder of the IFB-core Cluster : `/shared/projects/2319_ens_hts/rnaseq/` where retrieved from the [EBI European Electronic Archive](https://www.ebi.ac.uk/ena/browser/home) using the study accession number [PRJNA154483](https://www.ebi.ac.uk/ena/browser/view/PRJNA154483).
 
 ***
 
 ## Set up your working environment
 
-Connect to the IFB-core server. Look at the [tutorial](../IFBserver.md) to see how to proceed. You can also look at the [useful commands to work on the IFB-core Cluster](../IFBcommands.md) page.
+Connect to the IFB-core server. Look at the [tutorial](../IFBjupyterhub.md) to see how to proceed. You can also look at the [useful commands to work on the IFB-core Cluster](../IFBcommands.md) page.
 
 Go to your home directory
 ```
@@ -109,23 +109,23 @@ module load fastqc/0.11.9
 ### Check the help page of the programme to see its usage and parameters 
 
 ```
-srun fastqc --help
+fastqc --help
 ```
 
 ### Run fastqc on each experiment files
 
 ```
 # Absolute path to the file:
-# /shared/projects/form_2022_23/data/rnaseq/O2rep2_SRR352263.fastq
+# /shared/projects/2319_ens_hts/data/rnaseq/O2rep2_SRR352263.fastq
 #
 # -o option creates all output files in the specified output directory,
 # '.' means current directory
 
 # O2 condition
-srun fastqc /shared/projects/form_2022_23/data/rnaseq/O2rep2_SRR352263.fastq -o .
+fastqc /shared/projects/2319_ens_hts/data/rnaseq/O2rep2_SRR352263.fastq -o .
 
 # noO2 condition
-srun fastqc /shared/projects/form_2022_23/data/rnaseq/noO2rep3_SRR352271.fastq -o .
+fastqc /shared/projects/2319_ens_hts/data/rnaseq/noO2rep3_SRR352271.fastq -o .
 ```
 
 At this point you should see the new files in your directory using the `tree` command
@@ -140,7 +140,7 @@ tree
 	└─── noO2rep3_SRR352271.fastqc.zip
 ```
 
-### Download the HTML file reports on your local machine
+### Open the HTML file reports on your local machine
 
 On the French local system version, you must replace Desktop with Bureau
 
@@ -157,7 +157,7 @@ scp '<login>@core.cluster.france-bioinformatique.fr:~/RNAseq/1-QC/*.html' .
 # Enter your password 
 ```
 
-### Open the *.html* report with your internet browser
+Open the *.html* report with your internet browser
 
 ***
 
@@ -166,7 +166,7 @@ scp '<login>@core.cluster.france-bioinformatique.fr:~/RNAseq/1-QC/*.html' .
 Once data quality is verified, reads will be mapped onto the reference genome of yeast *C. parapsilosis*. The **genome sequence** of *C. parapsilosis* and its **annotations** (locations of ORFs) were retrieved from the [Candidat genome database (CGD)](http://www.candidagenome.org/).
 
 !!! note "Bowtie"
-	Different aligner and algorithms for RNA-seq analysis exist. We will use [**Bowtie 1.2**](http://bowtie-bio.sourceforge.net/manual.shtml) an ultrafast (memory-efficient) short read aligner.
+	Different aligner and algorithms for RNA-seq analysis exist. We will use [**Bowtie 1.3**](http://bowtie-bio.sourceforge.net/manual.shtml) an ultrafast (memory-efficient) short read aligner.
 	
 	As an input, Bowtie uses a **Fastq file** (with reads to be aligned) and **“pre-built indexes”** of the reference genome. These indexes are named ***“C_parapsilosis.1.ebwt”***, ***“C_parapsilosis.2.ebwt”***, etc. They will allow boosting the alignment process.  
 
@@ -219,11 +219,11 @@ module load bowtie/1.2.3
 ## We will use the following options:
 # "-S" will output the result in SAM format
 #
-# "/shared/projects/form_2022_23/data/rnaseq/bowtie_indexes/C_parapsilosis"
+# "/shared/projects/2319_ens_hts/data/rnaseq/bowtie_indexes/C_parapsilosis"
 # specify the location and the "prefix (C_parapsilosis)"" of the bowtie's
 # index files
 #
-# "/shared/projects/form_2022_23/data/rnaseq/Fastqc/O2rep2_SRR352263.fastq.gz"
+# "/shared/projects/2319_ens_hts/data/rnaseq/Fastqc/O2rep2_SRR352263.fastq.gz"
 # location of the input fastq
 #
 # "2>" will save in a file some statistic about the aligment (#of reads 
@@ -232,10 +232,10 @@ module load bowtie/1.2.3
 # "> redirects the mapping output into a .sam file
 
 # Map the aerobic condition reads
-srun bowtie -S /shared/projects/form_2022_23/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/form_2022_23/data/rnaseq/O2rep2_SRR352263.fastq 2> O2rep2_SRR352263_bowtie_mapping.out > O2rep2_SRR352263_bowtie_mapping.sam
+bowtie -S /shared/projects/2319_ens_hts/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/2319_ens_hts/data/rnaseq/O2rep2_SRR352263.fastq 2> O2rep2_SRR352263_bowtie_mapping.out > O2rep2_SRR352263_bowtie_mapping.sam
 
 # Map the hypoxic condition reads
-srun bowtie -S /shared/projects/form_2022_23/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/form_2022_23/data/rnaseq/noO2rep3_SRR352271.fastq 2> noO2rep3_SRR352271_bowtie_mapping.out > noO2rep3_SRR352271_bowtie_mapping.sam
+bowtie -S /shared/projects/2319_ens_hts/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/2319_ens_hts/data/rnaseq/noO2rep3_SRR352271.fastq 2> noO2rep3_SRR352271_bowtie_mapping.out > noO2rep3_SRR352271_bowtie_mapping.sam
 ```
 
 Your directory should now look like this :
@@ -295,10 +295,10 @@ In order to facilitate alignement manipulation, **SAM files** have to be convert
 module load samtools/1.15.1
 
 # Sort and convert O2 condition
-srun samtools sort O2rep2_SRR352263_bowtie_mapping.sam | srun samtools view -b  > O2rep2_SRR352263_bowtie_sorted.bam
+samtools sort O2rep2_SRR352263_bowtie_mapping.sam | samtools view -b  > O2rep2_SRR352263_bowtie_sorted.bam
 
 # Sort and convert noO2 condition
-srun samtools sort noO2rep3_SRR352271_bowtie_mapping.sam | srun samtools view -b  > noO2rep3_SRR352271_bowtie_sorted.bam
+samtools sort noO2rep3_SRR352271_bowtie_mapping.sam | samtools view -b  > noO2rep3_SRR352271_bowtie_sorted.bam
 ```
 
 ### Create indexes for the bam files
@@ -307,10 +307,10 @@ The index of a bam file is named ***.bam.bai***
 
 ```
 # Index the O2 condition
-srun samtools index O2rep2_SRR352263_bowtie_sorted.bam
+samtools index O2rep2_SRR352263_bowtie_sorted.bam
 
 # Index the noO2 condition
-srun samtools index noO2rep3_SRR352271_bowtie_sorted.bam
+samtools index noO2rep3_SRR352271_bowtie_sorted.bam
 ```
 
 Your directory should now look like this :
@@ -350,8 +350,8 @@ To download files from the cluster to your current directory (on your own comput
 scp  '<your login>@core.cluster.france-bioinformatique.fr:~/RNAseq/2-Mapping/*.bam*' .
 
 # Next the reference genome sequence and gene annotation files
-scp  '<your login>@core.cluster.france-bioinformatique.fr:/shared/projects/form_2022_23/data/rnaseq/C_parapsilosis_CGD.fasta' .
-scp  '<your login>@core.cluster.france-bioinformatique.fr:/shared/projects/form_2022_23/data/rnaseq/C_parapsilosis_ORFs.gff' .
+scp  '<your login>@core.cluster.france-bioinformatique.fr:/shared/projects/2319_ens_hts/data/rnaseq/C_parapsilosis_CGD.fasta' .
+scp  '<your login>@core.cluster.france-bioinformatique.fr:/shared/projects/2319_ens_hts/data/rnaseq/C_parapsilosis_ORFs.gff' .
 ```
 
 ### Visualize mapping results with IGV
@@ -437,14 +437,14 @@ cd  3-Counts
 module load bedtools/2.30.0
 
 # Counting matrix for the O2 condition
-srun bedtools multicov -bams ../2-Mapping/O2rep2_SRR352263_bowtie_sorted.bam -bed /shared/projects/form_2022_23/data/rnaseq/C_parapsilosis_ORFs.gff > O2rep2_SRR352263_gene_counts.gff
+bedtools multicov -bams ../2-Mapping/O2rep2_SRR352263_bowtie_sorted.bam -bed /shared/projects/2319_ens_hts/data/rnaseq/C_parapsilosis_ORFs.gff > O2rep2_SRR352263_gene_counts.gff
 # Output formating
-srun sed 's/^.*ID=//' O2rep2_SRR352263_gene_counts.gff > O2rep2_SRR352263_gene_counts.tab
+sed 's/^.*ID=//' O2rep2_SRR352263_gene_counts.gff > O2rep2_SRR352263_gene_counts.tab
 
 # Counting matrix for the noO2 condition
-srun bedtools multicov -bams ../2-Mapping/noO2rep3_SRR352271_bowtie_sorted.bam -bed /shared/projects/form_2022_23/data/rnaseq/C_parapsilosis_ORFs.gff > noO2rep3_SRR352271_gene_counts.gff
+bedtools multicov -bams ../2-Mapping/noO2rep3_SRR352271_bowtie_sorted.bam -bed /shared/projects/2319_ens_hts/data/rnaseq/C_parapsilosis_ORFs.gff > noO2rep3_SRR352271_gene_counts.gff
 # Output formating
-srun sed 's/^.*ID=//' noO2rep3_SRR352271_gene_counts.gff > noO2rep3_SRR352271_gene_counts.tab
+sed 's/^.*ID=//' noO2rep3_SRR352271_gene_counts.gff > noO2rep3_SRR352271_gene_counts.tab
 ```
 
 Take a look at the final counting matrices to see how the files are organised.
@@ -478,7 +478,7 @@ tree
 ### Unload the tools you used
 
 ```
-module unload fastqc/0.11.9 bowtie/1.2.3 samtools/1.15.1  bedtools/2.30.0
+module unload fastqc/0.11.9 bowtie/1.3.1 samtools/1.15.1  bedtools/2.30.0
 ```
 
 ***
@@ -497,12 +497,12 @@ In their article (Guida et al., 2011), the authors repeated the experiment 6 tim
 
 1. Connect to Rstudio server of the IFB
 
-Look at the [tutorial on how to connect to IFB-core Rstudio server](../IFBrstudio.md) to see how to proceed.
+Look at the [tutorial on how to connect to IFB-core Rstudio](../IFBjupyterhub.md) to see how to proceed.
 
 &nbsp;
 2. Save the working notebook in your personal environment
 
-- In "*File > Open File...*" enter the path `/shared/projects/form_2022_23/data/rnaseq/DEseq2.Rmd` to open the notebook containing all the code needed for the practical
+- In "*File > Open File...*" enter the path `/shared/projects/2319_ens_hts/data/rnaseq/DEseq2.Rmd` to open the notebook containing all the code needed for the practical
 - Save it into your personal folder on your IFB account using "*File > Save As*" with the following path `/shared/ifbstor1/home/your_login` 
    
 &nbsp;
