@@ -16,4 +16,4 @@ During this course, you will work remotely on the [IFB-core Cluster](https://www
 You can read the following tutorials in order to access IFB-core Cluster ressources.
 
 - [How to work with the IFB cluster](IFBjupyterhub.md)
-- [Useful commands to work on the IFB-core Cluster](IFBcommands.md)
+- [Useful tips and commands](Usefultips.md)
