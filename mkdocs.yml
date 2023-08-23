@@ -3,7 +3,7 @@ nav:
     - 1. Microarrays: Microarrays/Microarrays.md
     - 2. RNAseq: RNAseq/RNAseq.md
     - How to work with the IFB server: IFBjupyterhub.md
-    - Useful commands to work on the IFB-core Cluster: IFBcommands.md
+    - Useful tips and commands: Usefultips.md
 theme: readthedocs
 markdown_extensions:
     - admonition

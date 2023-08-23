@@ -1,13 +1,13 @@
-# Useful commands to work on the IFB-core Cluster
+# Useful tips and commands
 
-Here are some useful command lines you may need to work on the IFB-core Cluster during the practical.
+Here are some useful command lines you may need to work on ENS local computer and the IFB-core Cluster during the practical.
 
 You can find more detailed information and video tutorial on [IFB-core Cluster Documentation](https://ifb-elixirfr.gitlab.io/cluster/doc/).
 
 ***
 ## How to download/upload your data from the cluster
 
-To download file/files from the cluster to your current directory
+To download files from the cluster to your current directory
 ```
 scp  '<your login>@core.cluster.france-bioinformatique.fr:/<absolute path to your file>' .
 ```
@@ -23,34 +23,11 @@ scp '<path to your local folder>' '<your login>@core.cluster.france-bioinformati
 ```
 
 ***
-## How to get information on your current job
+## IFB-core cluster connexion
 
-```
-squeue -u <your login>
-```
+Beware of passwords that contains a '^' sign, you will need to copy/paste the password from a text file in order to work on ENS computers.
 
-***
-## How to list all your running/pending jobs
-
+If you get an error message because your login is too long  'too long for Unix domain socket' you could replace the server name by its IP address: 192.54.201.181
 ```
-squeue -u <your login> -t RUNNING
-squeue -u <your login> -t PENDING
-```
-
-***
-## How to cancel jobs
-
-Cancel a specific job
-```
-scancel <jobid>
-```
-
-Cancel all your jobs
-```
-scancel -u <your login>
-```
-   
-Cancel all your pending jobs
-```
-scancel -t PENDING -u <your login>
+ssh <your login>@192.54.201.181
 ```
