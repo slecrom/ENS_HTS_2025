@@ -16,7 +16,12 @@ Bookmark this URL in your browser for easy retrieval.
 
 ## Select your server options
 
-On the following screen you can select the option used by our JupyterHub server during the practical.
+On the following screen you can select the option used by our JupyterHub server during the practical. Two nodes have been booked for our training session on IFB server. To build your server on these nodes select the following options:
+
+* Reservation: 2319_ens_0
+* Partition: fast
+* CPU: 1
+* Memory: 2
 
 ![JupyterHub server options](./ressources/jupyterhub_serveroptions.png "JupyterHub server options")
 
