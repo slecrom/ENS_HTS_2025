@@ -358,16 +358,18 @@ scp  '<your login>@core.cluster.france-bioinformatique.fr:/shared/projects/2319_
 
 On linux type `igv` in a terminal window to launch the program (You can also download [IGV](http://software.broadinstitute.org/software/igv/download) and follow the instalation instructions according to your OS).
 
-Once the IGV program is launched, it is necessary to **import the reference genome** “Genomes/Create .genome File...” (see below). Select the FASTA file with the genomic sequence of *C. parapsilosis* “C_parapsilosis_CGD.fasta” (“Browse / FASTA file”) and **enter information regarding ORFs positions**, GFF file “C_parapsilosis_ORFs.gff” (“Browse Gene file”).  
-
-Finally, give a name to your genome (“Unique identifier” and “Descriptive name”) and press “OK”. Save the genome file in your home.
-
-!!! danger "Attention"
-	In order to IGV to create an index of your genome, you need to copy the reference genome FASTA file in a writable directory.
+Once the IGV program is launched, it is necessary to **load the reference genome** “Genomes/Load Genome from File...” (see below). Select the FASTA file with the genomic sequence of *C. parapsilosis* “C_parapsilosis_CGD.fasta” downloaded from IFB server.
 
 ![IGV genome](./images/IGV_genome.png "IGV genome")
 
-*C. parapsilosis* genome is now loaded into IGV and can be selected from the top/left menu (see 1 below). The genomic sequence can be therefore explored, choosing for instance, a particular chromosome (see 2 below) or a genomic region (see 3). Note that gene annotations (ORF positions) are shown at the bottom of the window (see 4, blue lines) and you can obtain a more detailed view of the sequence using the cursor located on the top/right of the window, see 5).
+!!! danger "Attention"
+	In order to IGV to create an index of your genome, you need to copy the reference genome FASTA file in a writable directory.
+	
+Next, load the *C. parapsilosis* annotation file "C_parapsilosis_ORFs.gff" using the “File/Load from File...” menu.
+
+Go to "File/Save session…" menu in order to backup all your parameters and visualisation options.
+
+*C. parapsilosis* genome and annotation are now loaded into IGV and can be selected from the top/left menu (see 1 below). The genomic sequence can be therefore explored, choosing for instance, a particular chromosome (see 2 below) or a genomic region (see 3). Note that gene annotations (ORF positions) are shown at the bottom of the window (see 4, blue lines) and you can obtain a more detailed view of the sequence using the cursor located on the top/right of the window, see 5).
 
 ![IGV tools](./images/IGV_tools.png "IGV tools")
 
