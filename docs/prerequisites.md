@@ -11,9 +11,8 @@
 * [The Sanger method of DNA sequencing (3')](https://www.youtube.com/watch?v=FvHRio1yyhQ)
 * [Illumina sequencing technology (5')](https://www.youtube.com/watch?v=fCd6B5HRaZ8)
 * [Oxford Nanopore Technologies sequencing (2')](https://www.youtube.com/watch?v=RcP85JHLmnI)
-* [Microarrays vs RNA sequencing (7')](https://www.youtube.com/watch?v=2c3t3tDEmsU)
 
-## R refresher
+## Reminder for R
 
 * [R programming language introduction](https://www.udemy.com/course/r-basics/)
 * [Rstudio education ressources for beginners](https://education.rstudio.com/learn/beginner/)
