@@ -31,7 +31,7 @@ The raw sequencing files located into the projet data folder of the IFB-core Clu
 
 ## Set up your working environment
 
-Connect to the IFB-core server. Look at the [tutorial](../IFBjupyterhub.md) to see how to proceed. You can also look at the [useful commands to work on the IFB-core Cluster](../IFBcommands.md) page.
+Connect to the IFB-core server. Look at the [tutorial](../IFBjupyterhub.md) to see how to proceed. You can also look at the [useful commands to work on the IFB-core Cluster](../Usefultips.md) page.
 
 Go to your home directory
 ```
