@@ -2,7 +2,7 @@
 
 Here are some useful command lines you may need to work on ENS local computer and the IFB-core Cluster during the practical.
 
-You can find more detailed information and video tutorial on [IFB-core Cluster Documentation](https://ifb-elixirfr.gitlab.io/cluster/doc/).
+You can find more detailed information on [IFB-core Cluster Documentation](https://ifb-elixirfr.gitlab.io/cluster/doc/).
 
 ***
 ## How to download/upload your data from the cluster
@@ -19,7 +19,7 @@ scp -r  '<your login>@core.cluster.france-bioinformatique.fr:/<absolute path to 
     
 To upload a file to the cluster
 ```
-scp '<path to your local folder>' '<your login>@core.cluster.france-bioinformatique.fr:/<absolute path to the target folder>'
+scp '<path to your local file>' '<your login>@core.cluster.france-bioinformatique.fr:/<absolute path to the target folder>'
 ```
 
 ***

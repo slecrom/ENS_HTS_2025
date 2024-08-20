@@ -1,8 +1,8 @@
-site_name: Functional genomic data analysis - transcriptomics 2023
+site_name: Functional genomic data analysis - transcriptomics 2024
 nav:
     - 1. Microarrays: Microarrays/Microarrays.md
     - 2. RNAseq: RNAseq/RNAseq.md
-    - How to work with the IFB server: IFBjupyterhub.md
+    - How to work with the IFB server: IFB_OpenOnDemand.md
     - Useful tips and commands: Usefultips.md
 theme: readthedocs
 markdown_extensions:
