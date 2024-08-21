@@ -31,7 +31,7 @@ The raw sequencing files located into the projet data folder of the IFB-core Clu
 
 ## Set up your working environment
 
-Connect to the IFB-core JupyterLab server. Look at the [tutorial](../IFB_OpenOnDemand.md) to see how to proceed. You can also look at the [useful commands to work on the IFB-core Cluster](../Usefultips.md) page.
+Connect to the IFB-core JupyterLab server. Look at the [tutorial](../IFB_OpenOnDemand.md#using-a-jupyterlab-session-to-access-unix-terminal) to see how to proceed. You can also look at the [useful commands to work on the IFB-core Cluster](../Usefultips.md) page.
 
 Go to your home directory
 ```
@@ -290,6 +290,10 @@ samtools sort O2rep2_SRR352263_bowtie_mapping.sam | samtools view -b  > O2rep2_S
 # Sort and convert noO2 condition
 samtools sort noO2rep3_SRR352271_bowtie_mapping.sam | samtools view -b  > noO2rep3_SRR352271_bowtie_sorted.bam
 ```
+
+!!! danger "Error message using samtools"
+	If you get an error message during samtools execution, check that you booked 2G of RAM for your JupyterLab environment.
+
 
 ### Create indexes for the bam files
 
