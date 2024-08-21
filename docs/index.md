@@ -6,8 +6,9 @@ This GitHub directory is used for the course "Functional genomic data analysis: 
 
 You can directly access to the content of the practical work for:
 
-1. [Microarrays](./Microarrays/Microarrays.md)
-2. [RNAseq](./RNAseq/RNAseq.md)
+1. [Dataset](./Dataset.md)
+2. [Preprocessing](./Preprocessing/Preprocessing.md)
+3. [Data analysis](./DataAnalysis/DataAnalysis.md)
 
 ***
 

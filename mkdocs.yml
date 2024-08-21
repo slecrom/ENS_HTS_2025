@@ -1,7 +1,8 @@
 site_name: Functional genomic data analysis - transcriptomics 2024
 nav:
-    - 1. Microarrays: Microarrays/Microarrays.md
-    - 2. RNAseq: RNAseq/RNAseq.md
+    - 1. Dataset: Dataset.md
+    - 2. Preprocessing: Preprocessing/Preprocessing.md
+    - 3. Data analysis: DataAnalysis/DataAnalysis.md
     - How to work with the IFB server: IFB_OpenOnDemand.md
     - Useful tips and commands: Usefultips.md
 theme: readthedocs
