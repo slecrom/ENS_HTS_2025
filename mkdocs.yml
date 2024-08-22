@@ -5,6 +5,7 @@ nav:
     - 3. Data analysis: DataAnalysis/DataAnalysis.md
     - How to work with the IFB server: IFB_OpenOnDemand.md
     - Useful tips and commands: Usefultips.md
+    - AI for code: AIforCode.md
 theme: readthedocs
 markdown_extensions:
     - admonition

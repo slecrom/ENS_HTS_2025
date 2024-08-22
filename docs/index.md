@@ -18,3 +18,7 @@ You can read the following tutorials in order to access IFB-core Cluster ressour
 
 - [How to work with the IFB cluster](IFB_OpenOnDemand.md)
 - [Useful tips and commands](Usefultips.md)
+
+If you want to leverage the power of artificial intelligence for the practicals, look at this page.
+
+- [AI for code](AIforCode.md)
