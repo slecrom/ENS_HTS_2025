@@ -32,7 +32,7 @@ Connect to Rstudio server of the IFB. Look at the [tutorial on how to connect to
 1. In "*File > Open File...*" enter the path `/shared/projects/2420_ens_hts/data/tutorials/preprocessing_microarrays.Rmd` to open the notebook containing all the code needed for the practical.
 
 &nbsp;
-2. Save it into your personal folder on your IFB account using "*File > Save As*"
+2. Save it into your personal folder on your IFB account using "*File > Save As*". You can access the path of your home folder using "~".
  
 ### Follow the instruction of the notebook to conduct the analysis
 	
