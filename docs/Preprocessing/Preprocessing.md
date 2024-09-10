@@ -249,7 +249,6 @@ tree
 └── 2-Mapping
     ├── O2rep2_SRR352263_bowtie_mapping.out
     ├── O2rep2_SRR352263_bowtie_mapping.sam
-    ├── core
     ├── noO2rep3_SRR352271_bowtie_mapping.out
     └── noO2rep3_SRR352271_bowtie_mapping.sam
 ```
