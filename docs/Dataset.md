@@ -6,4 +6,4 @@ The authors used high throughput technologies (*microarrays and high throughput 
 
 You will use the datasets related to the study of the hypoxic (low oxygen) response in *C. parapsilosis*.
 
-The raw sequencing files located into the projet data folder of the IFB-core Cluster : `/shared/projects/2420_ens_hts/rnaseq/` where retrieved from the [EBI European Electronic Archive](https://www.ebi.ac.uk/ena/browser/home) using the study accession number [PRJNA154483](https://www.ebi.ac.uk/ena/browser/view/PRJNA154483).
+The raw sequencing files located into the projet data folder of the IFB-core Cluster : `/shared/projects/2528_ens_master2lf_fgat/rnaseq/` where retrieved from the [EBI European Electronic Archive](https://www.ebi.ac.uk/ena/browser/home) using the study accession number [PRJNA154483](https://www.ebi.ac.uk/ena/browser/view/PRJNA154483).
