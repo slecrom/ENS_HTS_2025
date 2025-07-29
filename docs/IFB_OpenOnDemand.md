@@ -28,8 +28,8 @@ Clic on the "JupyterLab" tile
 
 On the following screen you can select the option used by our JupyterHub server during the practical. Two nodes have been booked for our training session on IFB server. To build your server on these nodes select the following options:
 
-* Reservation: 2420_0
-* Account: 2420_ens_hts
+* Reservation: 2528_fgat
+* Account: 2528_ens_master2lf_fgat
 * Partition: fast
 * CPU: 2
 * Memory: 2G
@@ -67,8 +67,8 @@ Clic on the "RStudio Server" tile
 
 On the following screen you can select the option used by our RStudio server during the practical. Two nodes have been booked for our training session on IFB server. To build your server on these nodes select the following options:
 
-* Reservation: 2420_0
-* Account: 2420_ens_hts
+* Reservation: 2528_fgat
+* Account: 2528_ens_master2lf_fgat
 * Partition: fast
 * CPU: 2
 * Memory: 2G
