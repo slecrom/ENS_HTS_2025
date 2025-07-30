@@ -37,7 +37,7 @@ Connect to Rstudio server of the IFB. Look at the [tutorial on how to connect to
 
 ### Save the working notebook in your personal environment
 
-1. In "*File > Open File...*" enter the path `/shared/projects/2420_ens_hts/data/tutorials/data_analysis.Rmd` to open the notebook containing all the code needed for the practical.
+1. In "*File > Open File...*" enter the path `/shared/projects/2528_ens_master2lf_fgat/data/tutorials/data_analysis.Rmd` to open the notebook containing all the code needed for the practical.
 
 &nbsp;
 2. Save it into your personal folder on your IFB account using "*File > Save As*"
@@ -64,8 +64,8 @@ To download files from the cluster to your current directory (on your own comput
 scp  '<your login>@core.cluster.france-bioinformatique.fr:~/RNAseq/2-Mapping/*.bam*' .
 
 # Next the reference genome sequence and gene annotation files
-scp  '<your login>@core.cluster.france-bioinformatique.fr:/shared/projects/2420_ens_hts/data/rnaseq/C_parapsilosis_CGD.fasta' .
-scp  '<your login>@core.cluster.france-bioinformatique.fr:/shared/projects/2420_ens_hts/data/rnaseq/C_parapsilosis_ORFs.gff' .
+scp  '<your login>@core.cluster.france-bioinformatique.fr:/shared/projects/2528_ens_master2lf_fgat/data/rnaseq/C_parapsilosis_CGD.fasta' .
+scp  '<your login>@core.cluster.france-bioinformatique.fr:/shared/projects/2528_ens_master2lf_fgat/data/rnaseq/C_parapsilosis_ORFs.gff' .
 ```
 
 ### Visualize mapping results with IGV

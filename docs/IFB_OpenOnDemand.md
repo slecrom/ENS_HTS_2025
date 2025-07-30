@@ -71,7 +71,7 @@ On the following screen you can select the option used by our RStudio server dur
 * Account: 2528_ens_master2lf_fgat
 * Partition: fast
 * CPU: 2
-* Memory: 2G
+* Memory: 3G
 * GPUs: No GPU
 * Number of hours: 3
 
