@@ -10,6 +10,8 @@ You can directly access to the content of the practical work for:
 2. [Preprocessing](./Preprocessing/Preprocessing.md)
 3. [Data analysis](./DataAnalysis/DataAnalysis.md)
 
+A bonus section is available to [visualize RNAseq alignements using a genome browser](./DataAnalysis/IGV.md).
+
 ***
 
 During this course, you will work remotely on the [IFB-core Cluster](https://www.france-bioinformatique.fr/en/ifb-core-cluster/) managed by the French Institute of Bioinformatics (IFB) the national bioinformatics infrastructure that provides support, deploys services, organizes training and carries out innovative developments for the life sciences communities.
