@@ -14,6 +14,9 @@ Clic on the "Grant Access" button.
 
 ![Open OnDemand Access](./ressources/openondemand_grantaccess.png "Open OnDemand Access")
 
+!!! danger "Internal Server Error"
+	If you get the error message "Internal Server Error" after grant access, this is a problem with the browser's cookies. Switching to a private browser window solves the problem.
+
 Bookmark this URL in your browser for easy retrieval.
 
 ***

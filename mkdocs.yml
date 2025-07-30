@@ -3,6 +3,7 @@ nav:
     - 1. Dataset: Dataset.md
     - 2. Preprocessing: Preprocessing/Preprocessing.md
     - 3. Data analysis: DataAnalysis/DataAnalysis.md
+    - Bonus. Alignments visualization: DataAnalysis/IGV.md
     - How to work with the IFB server: IFB_OpenOnDemand.md
     - Useful tips and commands: Usefultips.md
     - AI for code: AIforCode.md
