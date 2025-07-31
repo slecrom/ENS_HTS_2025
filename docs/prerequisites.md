@@ -18,3 +18,7 @@
 * [Rstudio education ressources for beginners](https://education.rstudio.com/learn/beginner/)
 * [Introduction to R syntax](https://www.codecademy.com/learn/learn-r)
 
+
+Sandbox.bio is a free platform for bioinformatics command-line tutorials that could run in the browser. You can learn basics of the Unix command line interface, Unix file system and combining bash commands. You can access it using this link: 
+[Interactive bioinformatics tutorials](https://sandboxbio.france-bioinformatique.fr/)
+
