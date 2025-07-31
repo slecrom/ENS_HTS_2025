@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>2. Preprocessing - Functional genomic data analysis - transcriptomics 2025</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2. Preprocessing";
+        var mkdocs_page_input_path = "Preprocessing/Preprocessing.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Functional genomic data analysis - transcriptomics 2025
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Dataset/">1. Dataset</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">2. Preprocessing</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#microarrays-data-preprocessing">Microarrays data preprocessing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#set-up-your-working-environment">Set up your working environment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#save-the-working-notebook-in-your-personal-environment">Save the working notebook in your personal environment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#follow-the-instruction-of-the-notebook-to-conduct-the-analysis">Follow the instruction of the notebook to conduct the analysis</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rnaseq-data-preprocessing">RNAseq data preprocessing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#set-up-your-working-environment_1">Set up your working environment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sequence-quality-controls">Sequence quality controls</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#create-a-new-directory-to-store-the-output-of-fastqc">Create a new directory to store the output of fastqc</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#go-to-this-directory">Go to this directory</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#make-fastqc-available-in-your-environment">Make fastqc available in your environment</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#run-fastqc-on-each-experiment-files">Run fastqc on each experiment files</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#open-the-html-file-reports-on-your-local-machine">Open the HTML file reports on your local machine</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mapping-of-reads-on-the-reference-genome">Mapping of reads on the reference genome</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#create-a-new-directory-to-store-the-output-of-bowtie">Create a new directory to store the output of bowtie</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#go-to-the-newly-created-directory">Go to the newly created directory</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#load-bowtie-into-your-environment">Load Bowtie into your environment</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#map-the-reads-to-the-reference-genome">Map the reads to the reference genome</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#post-processing-of-alignment-files">Post-processing of alignment files</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#sort-and-convert-sam-into-bam-files">Sort and convert .sam into .bam files</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-indexes-for-the-bam-files">Create indexes for the bam files</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gene-counts-estimation">Gene counts estimation</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#create-a-new-directory-to-store-the-orf-count-matrix">Create a new directory to store the ORF count matrix</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#go-to-the-newly-created-directory_1">Go to the newly created directory</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#calculate-for-each-orf-the-number-of-reads-that-were-aligned-to-it">Calculate for each ORF the number of reads that were aligned to it</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#unload-the-tools-you-used">Unload the tools you used</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#count-matrix-normalisation">Count matrix normalisation</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#save-the-working-notebook-in-your-personal-environment_1">Save the working notebook in your personal environment</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#follow-the-instruction-of-the-notebook-to-conduct-the-analysis_1">Follow the instruction of the notebook to conduct the analysis</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../DataAnalysis/DataAnalysis/">3. Data analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../DataAnalysis/IGV/">Bonus. Alignments visualization</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../IFB_OpenOnDemand/">How to work with the IFB server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Usefultips/">Useful tips and commands</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../AIforCode/">AI for code</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Functional genomic data analysis - transcriptomics 2025</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">2. Preprocessing</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="preprocessing-of-high-throughput-data">Preprocessing of high throughput data</h1>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#microarrays-data-preprocessing">Microarrays data preprocessing</a></li>
+<li><a href="#rnaseq-data-preprocessing">RNAseq data preprocessing</a></li>
+</ol>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<div class="admonition caution">
+<p class="admonition-title">Objective of this practical session</p>
+<p>During this practical session, you will learn:  </p>
+<ul>
+<li>
+<p>To perform experimental biases estimation and correction of microarrays GPR files. You will first perform <strong>quality control</strong> of the imaged glass slides before choosing the best normalisation method to apply.</p>
+</li>
+<li>
+<p>To conduct an analysis of RNA-seq raw fastq files. You will first perform <strong>quality control</strong> of the sequencer file outputs before proceding to the <strong>mapping</strong> of the reads onto the reference genome and normalise your data.</p>
+</li>
+</ul>
+</div>
+<hr />
+<h2 id="microarrays-data-preprocessing">Microarrays data preprocessing</h2>
+<h3 id="set-up-your-working-environment">Set up your working environment</h3>
+<p>Connect to Rstudio server of the IFB. Look at the <a href="../../IFB_OpenOnDemand/">tutorial on how to connect to IFB-core Rstudio server</a> to see how to proceed.</p>
+<h3 id="save-the-working-notebook-in-your-personal-environment">Save the working notebook in your personal environment</h3>
+<ol>
+<li>In "<em>File &gt; Open File...</em>" enter the path <code>/shared/projects/2528_ens_master2lf_fgat/data/tutorials/preprocessing_microarrays.Rmd</code> to open the notebook containing all the code needed for the practical.</li>
+</ol>
+<p>&nbsp;
+2. Save it into your personal folder on your IFB account using "<em>File &gt; Save As</em>". You can access the path of your home folder using "~".</p>
+<h3 id="follow-the-instruction-of-the-notebook-to-conduct-the-analysis">Follow the instruction of the notebook to conduct the analysis</h3>
+<p>You can also visualize the final <a href="../preprocessing_microarrays_report.html">report version</a>.</p>
+<p>You can find help on how to use R markdown on the <a href="https://rmarkdown.rstudio.com/lesson-2.html">R markdown project webpage</a>.</p>
+<hr />
+<h2 id="rnaseq-data-preprocessing">RNAseq data preprocessing</h2>
+<h3 id="set-up-your-working-environment_1">Set up your working environment</h3>
+<p>Connect to the IFB-core JupyterLab server. Look at the <a href="../../IFB_OpenOnDemand/#using-a-jupyterlab-session-to-access-unix-terminal">tutorial</a> to see how to proceed. You can also look at the <a href="../../Usefultips/">useful commands to work on the IFB-core Cluster</a> page.</p>
+<p>Go to your home directory</p>
+<pre><code>cd 
+</code></pre>
+<p>Create a directory that will contain all results of the upcoming analyses</p>
+<pre><code>mkdir RNAseq
+</code></pre>
+<p>Go to the newly created directory</p>
+<pre><code>cd RNAseq
+</code></pre>
+<p>Check your are in the right directory using the <code>pwd</code> command</p>
+<pre><code>pwd
+/shared/home/&lt;your login&gt;/RNAseq
+</code></pre>
+<h3 id="sequence-quality-controls">Sequence quality controls</h3>
+<div class="admonition note">
+<p class="admonition-title">Fastq files</p>
+<p><strong>Fastq</strong> files are raw results from RNA-seq experiments. These files comprise all the <strong>sequences</strong> (or reads) obtained from the sequencer device (Illumina technology in this practical), together with <strong>base quality scores</strong> (PHRED scores).</p>
+</div>
+<p>Two different files will be analyzed during this practical from Guida <em>et al.</em> publication:</p>
+<ul>
+<li><strong><em>O2rep2_SRR352263.fastq</em></strong> refereed to a transcriptome analysis of yeasts <em>C. parapsilosis</em> under normoxic condition (<a href="https://www.ebi.ac.uk/ena/browser/view/SRR352263">ENA access number: SRR352263</a>)</li>
+<li><strong><em>noO2rep3_SRR352271.fastq</em></strong> refereed to a transcriptome analysis of yeasts <em>C. parapsilosis</em> under hypoxic condition (<a href="https://www.ebi.ac.uk/ena/browser/view/SRR352271">ENA access number: SRR352271</a>)</li>
+</ul>
+<p>In a first step, controls will be performed on each FASTQ files in order to evaluate the overall quality of the sequences and identify potential problems that could impact the following analyses. During this practical we will use the <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/"><strong>FastQC</strong></a> software solution.</p>
+<div class="admonition note">
+<p class="admonition-title">FastQC</p>
+<p>FastQC is a quality control application for high throughput sequence data. It provides an interactive application to review the results of several different quality control checks, and create an <strong>HTML based report</strong>.</p>
+<p>The main functions of FastQC are:</p>
+<ul>
+<li><strong>Import of data</strong> from BAM, SAM or FastQ files (any variant)</li>
+<li>Providing a <strong>quick overview</strong> to tell you in which areas there may be problems</li>
+<li><strong>Summary graphs</strong> and tables to quickly assess your data</li>
+<li>Export of results to an <strong>HTML based report</strong></li>
+<li><strong>Offline operation mode</strong> to allow automated generation of reports without running the interactive application</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">What you have to do</p>
+<ol>
+<li>Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help">Fastqc help page</a> as well as exemples of <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html">good</a> or  <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html">bad</a> illumina data as references.</li>
+<li>&nbsp; Compare results between the two FASTQ files. Is there any concern related to the following analyses?</li>
+</ol>
+</div>
+<h4 id="create-a-new-directory-to-store-the-output-of-fastqc">Create a new directory to store the output of fastqc</h4>
+<pre><code>mkdir 1-QC
+
+# Using the `tree` command, your directory should look like this:
+tree
+│
+└───1-QC
+</code></pre>
+<h4 id="go-to-this-directory">Go to this directory</h4>
+<pre><code>cd 1-QC
+</code></pre>
+<h4 id="make-fastqc-available-in-your-environment">Make fastqc available in your environment</h4>
+<pre><code>module load fastqc/0.12.1
+</code></pre>
+<h4 id="run-fastqc-on-each-experiment-files">Run fastqc on each experiment files</h4>
+<pre><code># Absolute path to the file:
+# /shared/projects/2528_ens_master2lf_fgat/data/rnaseq/O2rep2_SRR352263.fastq
+#
+# -o option creates all output files in the specified output directory,
+# '.' means current directory
+
+# O2 condition
+fastqc /shared/projects/2528_ens_master2lf_fgat/data/rnaseq/O2rep2_SRR352263.fastq -o .
+
+# noO2 condition
+fastqc /shared/projects/2528_ens_master2lf_fgat/data/rnaseq/noO2rep3_SRR352271.fastq -o .
+</code></pre>
+<p>At this point you should see the new files in your directory using the <code>tree</code> command</p>
+<pre><code>tree
+│
+└───1-QC
+    └─── O2rep2_SRR352263.fastqc.html
+    └─── O2rep2_SRR352263.fastqc.zip
+    └─── noO2rep3_SRR352271.fastqc.html
+    └─── noO2rep3_SRR352271.fastqc.zip
+</code></pre>
+<h4 id="open-the-html-file-reports-on-your-local-machine">Open the HTML file reports on your local machine</h4>
+<p>Select "Home directory", from the "Files" menu of your IFB cluster Open On Demand dashboard.
+Navigate through the "1-QC" directory and open the <em>.html</em> reports using your internet browser.</p>
+<p><img alt="FastQC reports" src="../images/jupyterlab_fastqcfiles.png" title="FastQC reports" /></p>
+<hr />
+<h3 id="mapping-of-reads-on-the-reference-genome">Mapping of reads on the reference genome</h3>
+<p>Once data quality is verified, reads will be mapped onto the reference genome of yeast <em>C. parapsilosis</em>. The <strong>genome sequence</strong> of <em>C. parapsilosis</em> and its <strong>annotations</strong> (locations of ORFs) were retrieved from the <a href="http://www.candidagenome.org/">Candidat genome database (CGD)</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Bowtie</p>
+<p>Different aligner and algorithms for RNA-seq analysis exist. We will use <a href="http://bowtie-bio.sourceforge.net/manual.shtml"><strong>Bowtie 1.3</strong></a> an ultrafast (memory-efficient) short read aligner.</p>
+<p>As an input, Bowtie uses a <strong>Fastq file</strong> (with reads to be aligned) and <strong>“pre-built indexes”</strong> of the reference genome. These indexes are named <strong><em>“C_parapsilosis.1.ebwt”</em></strong>, <strong><em>“C_parapsilosis.2.ebwt”</em></strong>, etc. They will allow boosting the alignment process.  </p>
+<p>As an output, Bowtie provides a <strong>SAM file</strong>. SAM (Sequence Alignment/Map) is a generic format for storing large nucleotide sequence alignments.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">What you have to do</p>
+<ul>
+<li>Run sequence alignments with Bowtie using the two Fastq files</li>
+<li>While Bowtie is running, take a look at <a href="http://bowtie-bio.sourceforge.net/manual.shtml#the-bowtie-aligner">Bowtie documentation</a> that describes the options (particularly the <em>-m</em>)</li>
+<li>Look at the alignment statistic outputs (file .out)</li>
+<li>What is the proportion of reads aligned on the reference genome?</li>
+<li>Is there any concern to take into account for the following analyses?</li>
+</ul>
+</div>
+<h4 id="create-a-new-directory-to-store-the-output-of-bowtie">Create a new directory to store the output of bowtie</h4>
+<pre><code>#Go back to the parental directory &quot;RNAseq&quot;
+cd ../
+
+#Create a new directory to store results of the alignment
+mkdir 2-Mapping
+</code></pre>
+<p>Your directory should now look like this :</p>
+<pre><code>tree
+│
+└───1-QC
+    └─── O2rep2_SRR352263.fastqc.html
+    └─── O2rep2_SRR352263.fastqc.zip
+    └─── noO2rep3_SRR352271.fastqc.html
+    └─── noO2rep3_SRR352271.fastqc.zip
+└─── 2-Mapping
+</code></pre>
+<h4 id="go-to-the-newly-created-directory">Go to the newly created directory</h4>
+<pre><code>cd 2-Mapping
+</code></pre>
+<h4 id="load-bowtie-into-your-environment">Load Bowtie into your environment</h4>
+<pre><code>module load bowtie/1.3.1
+</code></pre>
+<h4 id="map-the-reads-to-the-reference-genome">Map the reads to the reference genome</h4>
+<pre><code>## We will use the following options:
+# &quot;-S&quot; will output the result in SAM format
+#
+# &quot;/shared/projects/2528_ens_master2lf_fgat/data/rnaseq/bowtie_indexes/C_parapsilosis&quot;
+# specify the location and the &quot;prefix (C_parapsilosis)&quot;&quot; of the bowtie's
+# index files
+#
+# &quot;/shared/projects/2528_ens_master2lf_fgat/data/rnaseq/Fastqc/O2rep2_SRR352263.fastq.gz&quot;
+# location of the input fastq
+#
+# &quot;2&gt;&quot; will save in a file some statistics about the aligment (number of  
+# reads mapped, etc...)
+#
+# &quot;&gt; redirects the mapping output into a .sam file
+
+# Map the aerobic condition reads
+bowtie -S /shared/projects/2528_ens_master2lf_fgat/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/2528_ens_master2lf_fgat/data/rnaseq/O2rep2_SRR352263.fastq 2&gt; O2rep2_SRR352263_bowtie_mapping.out &gt; O2rep2_SRR352263_bowtie_mapping.sam
+
+# Map the hypoxic condition reads
+bowtie -S /shared/projects/2528_ens_master2lf_fgat/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/2528_ens_master2lf_fgat/data/rnaseq/noO2rep3_SRR352271.fastq 2&gt; noO2rep3_SRR352271_bowtie_mapping.out &gt; noO2rep3_SRR352271_bowtie_mapping.sam
+</code></pre>
+<p>Your directory should now look like this :</p>
+<pre><code>tree
+.
+├── 1-QC
+│   ├── O2rep2_SRR352263_fastqc.html
+│   ├── O2rep2_SRR352263_fastqc.zip
+│   ├── noO2rep3_SRR352271_fastqc.html
+│   └── noO2rep3_SRR352271_fastqc.zip
+└── 2-Mapping
+    ├── O2rep2_SRR352263_bowtie_mapping.out
+    ├── O2rep2_SRR352263_bowtie_mapping.sam
+    ├── noO2rep3_SRR352271_bowtie_mapping.out
+    └── noO2rep3_SRR352271_bowtie_mapping.sam
+</code></pre>
+<p>Take a look at the outputs of the mapping step</p>
+<pre><code>less O2rep2_SRR352263_bowtie_mapping.out 
+# reads processed: 10213665
+# reads with at least one reported alignment: 9160950 (89.69%)
+# reads that failed to align: 1052715 (10.31%)
+# reported 9160950 alignments
+
+less noO2rep3_SRR352271_bowtie_mapping.out
+# reads processed: 10136009
+# reads with at least one reported alignment: 9252408 (91.28%)
+# reads that failed to align: 883601 (8.72%)
+# reported 9252408 alignment
+
+</code></pre>
+<h3 id="post-processing-of-alignment-files">Post-processing of alignment files</h3>
+<p>In order to facilitate alignement manipulation, <strong>SAM files</strong> have to be converted into <strong>BAM files</strong> (a binary version) and alignements “sorted” according to their localisation on the genome and files indexed in order to speed up their access. We will use the <a href="http://www.htslib.org/doc/samtools.html"><strong>Samtools</strong></a> suite to perform these steps.</p>
+<div class="admonition tip">
+<p class="admonition-title">What you have to do</p>
+<ul>
+<li>Convert SAM files into BAM files</li>
+<li>Sort and index BAM files</li>
+</ul>
+</div>
+<h4 id="sort-and-convert-sam-into-bam-files">Sort and convert <em>.sam</em> into <em>.bam</em> files</h4>
+<pre><code>## &quot;samtools sort&quot; sort alignments by genomic coordinates
+# &quot;|&quot; &quot;pipe&quot; the output of samtools sort to the next program
+#
+## &quot;samtools view&quot; will convert sam into bam
+# option &quot;-b&quot; specify the output to be in BAM format
+# &quot;&gt;&quot;&quot; write the output in the bam file
+
+module load samtools/1.21
+
+# Sort and convert O2 condition
+samtools sort O2rep2_SRR352263_bowtie_mapping.sam | samtools view -b  &gt; O2rep2_SRR352263_bowtie_sorted.bam
+
+# Sort and convert noO2 condition
+samtools sort noO2rep3_SRR352271_bowtie_mapping.sam | samtools view -b  &gt; noO2rep3_SRR352271_bowtie_sorted.bam
+</code></pre>
+<div class="admonition danger">
+<p class="admonition-title">Error message using samtools</p>
+<p>If you get an error message during samtools execution, check that you booked 2G of RAM for your JupyterLab environment.</p>
+</div>
+<h4 id="create-indexes-for-the-bam-files">Create indexes for the bam files</h4>
+<p>The index of a bam file is named <strong><em>.bam.bai</em></strong></p>
+<pre><code># Index the O2 condition
+samtools index O2rep2_SRR352263_bowtie_sorted.bam
+
+# Index the noO2 condition
+samtools index noO2rep3_SRR352271_bowtie_sorted.bam
+</code></pre>
+<p>Your directory should now look like this :</p>
+<pre><code>tree
+.
+├── 1-QC
+│   ├── O2rep2_SRR352263_fastqc.html
+│   ├── O2rep2_SRR352263_fastqc.zip
+│   ├── noO2rep3_SRR352271_fastqc.html
+│   └── noO2rep3_SRR352271_fastqc.zip
+└── 2-Mapping
+    ├── O2rep2_SRR352263_bowtie_mapping.out
+    ├── O2rep2_SRR352263_bowtie_mapping.sam
+    ├── O2rep2_SRR352263_bowtie_sorted.bam
+    ├── O2rep2_SRR352263_bowtie_sorted.bam.bai
+    ├── noO2rep3_SRR352271_bowtie_mapping.out
+    ├── noO2rep3_SRR352271_bowtie_mapping.sam
+    ├── noO2rep3_SRR352271_bowtie_sorted.bam
+    └── noO2rep3_SRR352271_bowtie_sorted.bam.bai
+</code></pre>
+<h3 id="gene-counts-estimation">Gene counts estimation</h3>
+<p>To identify genes whose expression is different between hypoxic and normoxic conditions, we will <strong>count and compare the number of reads mapped to each ORF</strong>. A program available in the <a href="https://github.com/arq5x/bedtools2"><strong>Bedtools</strong></a> suite will be used for this purpose.</p>
+<div class="admonition tip">
+<p class="admonition-title">What you have to do</p>
+<ul>
+<li>Calculate for each ORF the number of reads that were aligned (normoxic and hypoxic conditions).</li>
+</ul>
+</div>
+<h4 id="create-a-new-directory-to-store-the-orf-count-matrix">Create a new directory to store the ORF count matrix</h4>
+<pre><code># Go to the parental directory &quot;RNAseq&quot;
+cd ../
+
+# Create a new directory to store results of the alignment
+mkdir 3-Counts
+</code></pre>
+<p>Your directory should now look like this :</p>
+<pre><code>tree
+.
+├── 1-QC
+│   ├── O2rep2_SRR352263_fastqc.html
+│   ├── O2rep2_SRR352263_fastqc.zip
+│   ├── noO2rep3_SRR352271_fastqc.html
+│   └── noO2rep3_SRR352271_fastqc.zip
+├── 2-Mapping
+│   ├── O2rep2_SRR352263_bowtie_mapping.out
+│   ├── O2rep2_SRR352263_bowtie_mapping.sam
+│   ├── O2rep2_SRR352263_bowtie_sorted.bam
+│   ├── O2rep2_SRR352263_bowtie_sorted.bam.bai
+│   ├── core
+│   ├── noO2rep3_SRR352271_bowtie_mapping.out
+│   ├── noO2rep3_SRR352271_bowtie_mapping.sam
+│   ├── noO2rep3_SRR352271_bowtie_sorted.bam
+│   └── noO2rep3_SRR352271_bowtie_sorted.bam.bai
+└── 3-Counts
+
+</code></pre>
+<h4 id="go-to-the-newly-created-directory_1">Go to the newly created directory</h4>
+<pre><code>cd  3-Counts
+</code></pre>
+<h4 id="calculate-for-each-orf-the-number-of-reads-that-were-aligned-to-it">Calculate for each ORF the number of reads that were aligned to it</h4>
+<pre><code>module load bedtools/2.31.1
+
+# Counting matrix for the O2 condition
+bedtools multicov -bams ../2-Mapping/O2rep2_SRR352263_bowtie_sorted.bam -bed /shared/projects/2528_ens_master2lf_fgat/data/rnaseq/C_parapsilosis_ORFs.gff &gt; O2rep2_SRR352263_gene_counts.gff
+# Output formating
+sed 's/^.*ID=//' O2rep2_SRR352263_gene_counts.gff &gt; O2rep2_SRR352263_gene_counts.tab
+
+# Counting matrix for the noO2 condition
+bedtools multicov -bams ../2-Mapping/noO2rep3_SRR352271_bowtie_sorted.bam -bed /shared/projects/2528_ens_master2lf_fgat/data/rnaseq/C_parapsilosis_ORFs.gff &gt; noO2rep3_SRR352271_gene_counts.gff
+# Output formating
+sed 's/^.*ID=//' noO2rep3_SRR352271_gene_counts.gff &gt; noO2rep3_SRR352271_gene_counts.tab
+</code></pre>
+<p>Take a look at the final counting matrices to see how the files are organised.</p>
+<p>At the end of RNA-seq data analysis your directory should look like this :</p>
+<pre><code>tree
+.
+├── 1-QC
+│   ├── O2rep2_SRR352263_fastqc.html
+│   ├── O2rep2_SRR352263_fastqc.zip
+│   ├── noO2rep3_SRR352271_fastqc.html
+│   └── noO2rep3_SRR352271_fastqc.zip
+├── 2-Mapping
+│   ├── O2rep2_SRR352263_bowtie_mapping.out
+│   ├── O2rep2_SRR352263_bowtie_mapping.sam
+│   ├── O2rep2_SRR352263_bowtie_sorted.bam
+│   ├── O2rep2_SRR352263_bowtie_sorted.bam.bai
+│   ├── core
+│   ├── noO2rep3_SRR352271_bowtie_mapping.out
+│   ├── noO2rep3_SRR352271_bowtie_mapping.sam
+│   ├── noO2rep3_SRR352271_bowtie_sorted.bam
+│   └── noO2rep3_SRR352271_bowtie_sorted.bam.bai
+└── 3-Counts
+    ├── O2rep2_SRR352263_gene_counts.gff
+    ├── O2rep2_SRR352263_gene_counts.tab
+    ├── noO2rep3_SRR352271_gene_counts.gff
+    └── noO2rep3_SRR352271_gene_counts.tab
+</code></pre>
+<h4 id="unload-the-tools-you-used">Unload the tools you used</h4>
+<pre><code>module unload fastqc/0.12.1 bowtie/1.3.1 samtools/1.21  bedtools/2.31.1
+</code></pre>
+<h3 id="count-matrix-normalisation">Count matrix normalisation</h3>
+<p>Connect to Rstudio server of the IFB. Look at the <a href="../../IFB_OpenOnDemand/">tutorial on how to connect to IFB-core Rstudio server</a> to see how to proceed.</p>
+<h4 id="save-the-working-notebook-in-your-personal-environment_1">Save the working notebook in your personal environment</h4>
+<ol>
+<li>In "<em>File &gt; Open File...</em>" enter the path <code>/shared/projects/2528_ens_master2lf_fgat/data/tutorials/preprocessing_rnaseq.Rmd</code> to open the notebook containing all the code needed for the practical.</li>
+</ol>
+<p>&nbsp;
+2. Save it into your personal folder on your IFB account using "<em>File &gt; Save As</em>"</p>
+<hr />
+<h4 id="follow-the-instruction-of-the-notebook-to-conduct-the-analysis_1">Follow the instruction of the notebook to conduct the analysis</h4>
+<p>You can also visualize the final <a href="../preprocessing_rnaseq_report.html">report version</a>.</p>
+<p>You can find help on how to use R markdown on the <a href="https://rmarkdown.rstudio.com/lesson-2.html">R markdown project webpage</a>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../Dataset/" class="btn btn-neutral float-left" title="1. Dataset"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../DataAnalysis/DataAnalysis/" class="btn btn-neutral float-right" title="3. Data analysis">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../Dataset/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../DataAnalysis/DataAnalysis/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
