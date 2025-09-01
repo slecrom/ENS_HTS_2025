@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Bonus. Alignments visualization - Functional genomic data analysis - transcriptomics 2025</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Bonus. Alignments visualization";
+        var mkdocs_page_input_path = "DataAnalysis/IGV.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Functional genomic data analysis - transcriptomics 2025
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Dataset/">1. Dataset</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Preprocessing/Preprocessing/">2. Preprocessing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../DataAnalysis/">3. Data analysis</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Bonus. Alignments visualization</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#download-the-necessary-files-on-your-computer">Download the necessary files on your computer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#visualize-mapping-results-with-igv">Visualize mapping results with IGV</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../IFB_OpenOnDemand/">How to work with the IFB server</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Usefultips/">Useful tips and commands</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../AIforCode/">AI for code</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Functional genomic data analysis - transcriptomics 2025</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Bonus. Alignments visualization</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="alignments-visualization-using-a-genome-browser">Alignments visualization using a genome browser</h1>
+<div class="admonition note">
+<p class="admonition-title">IGV</p>
+<p>The <a href="http://software.broadinstitute.org/software/igv/home">Integrative Genomics Viewer</a> (IGV) is a high-performance <strong>visualization tool</strong> for interactive exploration of large genomic datasets. It supports a wide variety of data types, including array-based, high throughput sequence data and genomic annotations. In this practical, we will use IGV to visualize mapping results.</p>
+</div>
+<h2 id="download-the-necessary-files-on-your-computer">Download the necessary files on your computer</h2>
+<p>To download files from the cluster to your current directory (on your own computer), <strong>open a new terminal and run the following command</strong>. Alternatively you can use the file browsing system of Open On Demand web portal.</p>
+<pre><code># First bam and bai alignement files
+scp  '&lt;your login&gt;@core.cluster.france-bioinformatique.fr:~/RNAseq/2-Mapping/*.bam*' .
+
+# Next the reference genome sequence and gene annotation files
+scp  '&lt;your login&gt;@core.cluster.france-bioinformatique.fr:/shared/projects/2528_ens_master2lf_fgat/data/rnaseq/C_parapsilosis_CGD.fasta' .
+scp  '&lt;your login&gt;@core.cluster.france-bioinformatique.fr:/shared/projects/2528_ens_master2lf_fgat/data/rnaseq/C_parapsilosis_ORFs.gff' .
+</code></pre>
+<h2 id="visualize-mapping-results-with-igv">Visualize mapping results with IGV</h2>
+<p>On linux type <code>igv</code> in a terminal window to launch the program (You can also download <a href="http://software.broadinstitute.org/software/igv/download">IGV</a> and follow the instalation instructions according to your OS).</p>
+<p>Once the IGV program is launched, it is necessary to <strong>load the reference genome</strong> “Genomes/Load Genome from File...” (see below). Select the FASTA file with the genomic sequence of <em>C. parapsilosis</em> “C_parapsilosis_CGD.fasta” downloaded from IFB server.</p>
+<p><img alt="IGV genome" src="../images/IGV_genome.png" title="IGV genome" /></p>
+<div class="admonition danger">
+<p class="admonition-title">Attention</p>
+<p>In order to IGV to create an index of your genome, you need to copy the reference genome FASTA file in a directory where you have write permission.</p>
+</div>
+<p>Next, load the <em>C. parapsilosis</em> annotation file "C_parapsilosis_ORFs.gff" using the “File/Load from File...” menu.</p>
+<p>Go to "File/Save session…" menu in order to backup all your parameters and visualisation options.</p>
+<p><em>C. parapsilosis</em> genome and annotation are now loaded into IGV and can be selected from the top/left menu (see 1 below). The genomic sequence can be therefore explored, choosing for instance, a particular chromosome (see 2 below) or a genomic region (see 3). Note that gene annotations (ORF positions) are shown at the bottom of the window (see 4, blue lines) and you can obtain a more detailed view of the sequence using the cursor located on the top/right of the window, see 5).</p>
+<p><img alt="IGV tools" src="../images/IGV_tools.png" title="IGV tools" /></p>
+<p>Mapping results (“.sorted.bam” files) can now be imported (“File / Load from File”). Zoom in genomic regions in order to visualize read alignements.</p>
+<p><img alt="Reads visualization" src="../images/Reads_visualization.png" title="Reads visualization" /></p>
+<p>You can color reads according to several properties such as read strand by right click on the desire track.</p>
+<p><img alt="Color Read Strand" src="../images/ColorReadStrand.png" title="Color Read Strand" /></p>
+<div class="admonition tip">
+<p class="admonition-title">What you have to do</p>
+<ul>
+<li>Did the authors of the article use stranded-specific protocols?</li>
+<li>Do you validate the differentially expressed genes found at the previous steps?</li>
+</ul>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../DataAnalysis/" class="btn btn-neutral float-left" title="3. Data analysis"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../IFB_OpenOnDemand/" class="btn btn-neutral float-right" title="How to work with the IFB server">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../DataAnalysis/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../IFB_OpenOnDemand/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
